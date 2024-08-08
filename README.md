@@ -30,7 +30,10 @@ This Terraform configuration deploys a highly available architecture on AWS clou
 2. Creates an Auto Scaling Group (ASG) using this Launch Template, selecting both private subnets for instance deployment.
 3. Implements a target tracking policy to manage auto-scaling rules based on the desired metric. For this scenario, we use AverageCPUUtilization metrics to scale up and down the instances.
 
-**IMportant Terraform commands**:
+
+
+
+**Important Terraform commands**:
 1. **terraform init**: this command prepares the working directory to run other terraform commands. It installs and initializes the specified provider plugin, installs and initializes modules, and initializes the terraform backend. In this configuration, we are proceeding with the **local backend** where terraform stores the state in loal **terraform.tfstate** file.
 2. **terraform validate**: this commmand validates the configuration files for any syntax errors.
 3. **terraform plan**: this command generates an execution plan to analize what resources will be created, modified, and destroyed. Terraform generates this plan by comparing the current state stored in terraform.tfstate file with the desired state.
