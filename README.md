@@ -9,23 +9,22 @@ This Terraform configuration deploys a highly available architecture on AWS clou
 2. Configures 2 public subnets and 2 private subnets.
    
 **Internet Connectivity**:
-
-Attached an Internet Gateway to the VPC.
-Created a route table with a route to use the Internet Gateway as the next hop for internet-bound traffic.
-Associated this route table with the 2 public subnets.
-Private Subnet Connectivity:
-
-Deployed 2 NAT Gateways in the 2 public subnets.
-Created 2 route tables, each with a route to use the respective NAT Gateway as the next hop for internet-bound traffic.
-Associated these route tables with the respective private subnets.
-Load Balancing:
-
-Deployed a Network Load Balancer (NLB) in the 2 public subnets.
-Created a target group for the instances.
-Configured the NLB listener to forward traffic received on port 80 to the instances in the target group.
-Auto Scaling:
-
-Created a Launch Template to define the instance configuration.
-Created an Auto Scaling Group (ASG) using this Launch Template, selecting both private subnets for instance deployment.
-Implemented a target tracking policy to manage auto-scaling rules based on the desired metric.
+1. Attaches an Internet Gateway to the VPC.
+2. Creates a route table with a route to use the Internet Gateway as the next hop for internet-bound traffic.
+3. Associates this route table with the 2 public subnets.
+   
+**Private Subnet Connectivity**:
+1. Deploys 2 NAT Gateways in the 2 public subnets.
+2. Creates 2 route tables, each with a route to use the respective NAT Gateway as the next hop for internet-bound traffic.
+3. Associates these route tables with the respective private subnets.
+   
+**Load Balancing**:
+1. Deploys a Network Load Balancer (NLB) instances in the 2 public subnets.
+2. Creates a target group for the instances. This instance target group will be empty initially and contains instances when used with autoscaling group
+3. Configures the NLB listener to forward traffic received on port 80 to port 80 of autoscaling group instances in target group that servers the application.
+   
+**Auto Scaling**:
+1. Creates a Launch Template to define the instance configuration like AMI, instance-type, user-data, security groupps, etc.
+2. Creates an Auto Scaling Group (ASG) using this Launch Template, selecting both private subnets for instance deployment.
+3. Implements a target tracking policy to manage auto-scaling rules based on the desired metric. For this scenario, we use AverageCPUUtilization metrics to scale up and down the instances.
 
