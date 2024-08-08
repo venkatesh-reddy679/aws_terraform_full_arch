@@ -30,3 +30,16 @@ This Terraform configuration deploys a highly available architecture on AWS clou
 2. Creates an Auto Scaling Group (ASG) using this Launch Template, selecting both private subnets for instance deployment.
 3. Implements a target tracking policy to manage auto-scaling rules based on the desired metric. For this scenario, we use AverageCPUUtilization metrics to scale up and down the instances.
 
+**IMportant Terraform commands**:
+1. **terraform init**: this command prepares the working directory to run other terraform commands. It installs and initializes the specified provider plugin, installs and initializes modules, and initializes the terraform backend. In this configuration, we are proceeding with the **local backend** where terraform stores the state in loal **terraform.tfstate** file.
+2. **terraform validate**: this commmand validates the configuration files for any syntax errors.
+3. **terraform plan**: this command generates an execution plan to analize what resources will be created, modified, and destroyed. Terraform generates this plan by comparing the current state stored in terraform.tfstate file with the desired state.
+4. **terraform apply**: this command applies the desired state of infrastructure on AWS cloud.
+5. **terraform state list**: this command shows the list of resources managed by terraform on AWS.
+6. **terraform state show**: this command shows the current state of a specific resource stored in state file.
+7. **terraform state rm**: this command removes metadata about a spcific resource from state file indicating that terraform will no longer manage that resource.
+8. **terraform destroy**: this command destroys all the infrastructure managed by terraform on AWS.
+9. **terraform import**: this command imports the specific resource into terraform statefile indicating that the resouce will now be managed by teraform.
+10. **terraform taint**: this command marks a specific resource as tainted which will be destroyed and recreated on next **terraform apply**
+
+
