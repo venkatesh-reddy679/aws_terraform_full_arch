@@ -2,7 +2,7 @@ variable "vpc_cidr" {
   type = string
   validation {
     condition = endswith(var.vpc_cidr,"/16")
-    error_message = " for vpc address space"
+    error_message = "please choose a /16 cidr for vpc address space"
   }
 }
 variable "subnet" {
