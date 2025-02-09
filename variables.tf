@@ -1,5 +1,9 @@
 variable "vpc_cidr" {
   type = string
+  validation {
+    condition = endswith(var.vpc_cidr,"/16")
+    error_message = " for vpc address space"
+  }
 }
 variable "subnet" {
   type=map(object({
